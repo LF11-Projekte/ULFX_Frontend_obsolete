@@ -1,12 +1,14 @@
 <script setup>
-import Post from "@/components/Post.vue";
-import CenterContent from "@/components/CenterContent.vue";
 </script>
 
 <template>
-  <CenterContent>
-    <Post />
-  </CenterContent>
+  <div class="content">
+    <div class="space"/>
+    <div class="middle">
+        <slot />
+    </div>
+    <div class="space"/>
+  </div>
 </template>
 
 <style scoped>
@@ -25,15 +27,9 @@ import CenterContent from "@/components/CenterContent.vue";
   flex-grow: 1;
 }
 
-.space-left {
+.space {
   width: var(--space-width);
-}
-
-.space-right {
-  width: var(--space-width);
-}
-
-.post-space {
-  margin-bottom: var(--post-space-between);
+  min-width: var(--space-width);
+  max-width: var(--space-width);
 }
 </style>

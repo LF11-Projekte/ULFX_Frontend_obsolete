@@ -1,8 +1,9 @@
 /* color palette from <https://github.com/vuejs/theme> */
 /* semantic color variables for this project */
 :root {
-  --space-width: 400px;
+  --space-width: 100px;
   --margin-top-middle: 100px;
+  --margin-bottom-middle: 20px;
   --paddig-middle: 20px;
 
   --navbar-height: 50px;
@@ -13,18 +14,29 @@
   --color-searchbar: #D9D9D9;
   --border-radius-searchbar: 8px;
 
-  --border-radius-profile-circle: 20px;
-  --height-profile-circle: 40px;
-  --height-profile-image: 20px;
-  --color-profile-background: #DBDBDB;
+  --color-profile-circle-background: #a5a5a5;
+  --color-profile-circle-background-hover: #DBDBDB;
+  --size-profile-picture: 35px;
 
   --color-submenu: var(--color-navbar);
   --color-submenu-hover: #828282;
   --min-width-submenu-entry: 100px;
   --height-submenu-entry: 30px;
 
+  --padding-post: 5px;
+  --post-space-between: 5px;
+
+  --color-button: rgb(200, 200, 200);
+  --color-button-hover: rgb(180, 180, 180);
+  --size-actionbuttons: 30px;
+
+  --max-width-comment-profile: 100px;
+  --max-post-height: 400px;
+
+  --box-shadow: 2px 2px 4px rgba(150,150,150, 0.3);
+  --border: 1px solid rgb(200,200,200, 0.3);
   --color-text: black;
-  --color-background: #D9D9D9;
+  --color-background: #efefef;
 }
 
 html {
@@ -35,6 +47,8 @@ body {
   min-height: 100%;
   margin: 0;
   background-image: linear-gradient(45deg, #4D68D9 0%, #AF6AB3 90%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family:
     Inter,

@@ -1,7 +1,8 @@
 <script setup>
+import ProfileCircle from '@/components/ProfileCircle.vue';
 
 import {ref} from "vue";
-const showSubmenu = ref(true);
+const showSubmenu = ref(false);
 
 </script>
 
@@ -19,9 +20,7 @@ const showSubmenu = ref(true);
     </div>
 
     <div class="navbar-right">
-      <div class="profile">
-        <img src="@/assets/profile.svg">
-      </div>
+      <ProfileCircle class="profile-picture"/>
       <div class="menu">
         <img class="menu-icon" src="@/assets/menu.svg" @click="showSubmenu = !showSubmenu">
         <div v-show="showSubmenu" id="submenu">
@@ -51,15 +50,18 @@ img {
 
 .navbar-left {
   margin: auto auto auto 0;
+  max-height: 100%;
 }
 
 .navbar-center {
   margin: auto 0;
+  max-height: 100%;
 }
 
 .navbar-right {
   display: flex;
   margin: auto 0 auto auto;
+  max-height: 100%;
 }
 
 .searchbar {
@@ -82,26 +84,6 @@ img {
   outline: none;
   height: auto;
   border: 0;
-}
-
-.profile {
-  user-select: none;
-  margin: 5px;
-  background-color: var(--color-profile-background);
-  border-radius: var(--border-radius-profile-circle);
-  height: var(--height-profile-circle);
-  width: var(--height-profile-circle);
-  overflow: hidden;
-}
-
-.profile img {
-  height: var(--height-profile-image);
-  transform: translate(50%, 50%);
-  display: block;
-}
-
-.profile:hover {
-  background-color: rgba(150,150,150,0.8);
 }
 
 .menu-icon:hover {
@@ -129,5 +111,10 @@ img {
 
 .submenu-entry:hover {
   background-color: var(--color-submenu-hover);
+}
+
+.profile-picture {
+  margin: auto;
+  margin-right: 10px;
 }
 </style>
