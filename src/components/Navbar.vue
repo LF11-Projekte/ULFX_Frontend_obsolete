@@ -3,7 +3,7 @@ import router from '@/router';
 import ProfileCircle from '@/components/ProfileCircle.vue';
 
 import {ref} from "vue";
-const showSubmenu = ref(false);
+
 
 </script>
 
@@ -21,13 +21,7 @@ const showSubmenu = ref(false);
     </div>
 
     <div class="navbar-right">
-      <ProfileCircle class="profile-picture" user="me" />
-      <div class="menu">
-        <img class="menu-icon" src="@/assets/menu.svg" @click="showSubmenu = !showSubmenu">
-        <div v-show="showSubmenu" id="submenu">
-          <a class="submenu-entry">Nothing</a>
-        </div>
-      </div>
+      <ProfileCircle class="profile-picture" user="me" style="margin: 5px;"/>
     </div>
   </div>
 </template>
@@ -89,37 +83,5 @@ img {
 
 .menu-icon:hover {
   background-color: var(--color-submenu-hover);
-}
-
-#submenu {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  right: 0;
-  top: var(--navbar-height);
-}
-
-.submenu-entry {
-  text-decoration: none;
-}
-
-.submenu-entry {
-  color: #D9D9D9;
-  display: block;
-  background-color: var(--color-submenu);
-  margin: 0;
-  padding: 5px;
-  text-align: center;
-  min-width: var(--min-width-submenu-entry);
-}
-
-.submenu-entry:hover {
-  background-color: var(--color-submenu-hover);
-}
-
-.profile-picture {
-  margin: auto;
-  margin-right: 10px;
 }
 </style>

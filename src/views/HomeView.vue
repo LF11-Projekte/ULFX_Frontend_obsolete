@@ -2,6 +2,20 @@
 import Post from "@/components/Post.vue";
 import CenterContent from "@/components/CenterContent.vue";
 
+import { Api } from "@/API";
+
+const api = new Api();
+api.user.create({
+
+})
+api.comment.create({
+  userId: "123",
+  referenceId: "123",
+  referenceType: "COMMENT",
+  text: "string"
+})
+console.log(api.comment.getAll())
+
 // for resizing posts comments
 function resize() {
   for (let element of document.getElementsByClassName("post")) {
