@@ -9,10 +9,14 @@ let picture = "/src/assets/profile.svg";
 if (props.size)
     size = props.size;
 
+function openProfile() {
+    window.location.href = '/profile/' + props.user;
+}
+
 </script>
 
 <template>
-    <div class="profile-picture" v-on:click="router.push('/profile/' + props.user)" v-bind:style="{minWidth: size, maxWidth: size, minHeight: size, maxHeight: size, backgroundImage: `url(${picture})`}"/>
+    <div class="profile-picture" v-on:click="openProfile(props.user)" v-bind:style="{minWidth: size, maxWidth: size, minHeight: size, maxHeight: size, backgroundImage: `url(${picture})`}"/>
 </template>
 
 <style scoped>

@@ -6,7 +6,8 @@ import { useUserStore } from '@/stores/user'
 
 const user = useUserStore();
 
-user.auth();
+if (user.userId === 0)
+  user.auth();
 
 </script>
 

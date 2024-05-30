@@ -1,6 +1,5 @@
 // stores/counter.js
 import { defineStore } from 'pinia'
-import { Api } from '@/API';
 
 export const useUserStore = defineStore('user', {
     state: () => ({
@@ -11,15 +10,14 @@ export const useUserStore = defineStore('user', {
     
     actions: {
         auth() {
-            const api = new Api();
-            api.user.create({
-                "id": "c5dc2b8f-ce57-4900-be99-bbe719d18a68",
-                "creationDate": "2024-05-30T19:36:37.039Z",
-                "updateDate": "2024-05-30T19:36:37.039Z",
-                "email": "Test@ttest.de",
-                "username": "Testi Tester",
-                "description": "jajajjaja"
-              });
+            fetch("http://localhost:9999/api/User/5bb0f60f-7896-4af4-882c-bd8599988d7c", {
+                method: "GET"
+            }).then(r => {
+                if (r.status === 200) return r.json();
+            }).then(r => {
+                this.userId = r.id;
+                this.userName = r.username;
+            })
         },
     },
 })

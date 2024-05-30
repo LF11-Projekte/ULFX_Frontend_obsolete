@@ -1,20 +1,13 @@
 <script setup>
+import { ref } from 'vue';
 import Post from "@/components/Post.vue";
 import CenterContent from "@/components/CenterContent.vue";
 
-import { Api } from "@/API";
+let posts = ref([]);
 
-const api = new Api();
-api.user.create({
-
+fetch("http://localhost:9999/api/Post").then((response) => response.json()).then((data) => {
+  posts.value = data;
 })
-api.comment.create({
-  userId: "123",
-  referenceId: "123",
-  referenceType: "COMMENT",
-  text: "string"
-})
-console.log(api.comment.getAll())
 
 // for resizing posts comments
 function resize() {
@@ -35,7 +28,9 @@ window.addEventListener("resize", resize);
 
 <template>
   <CenterContent>
-    <Post class="post-space" v-for="i in 32"/>
+    <template v-for="post in posts">
+      <Post :text="post.text" :title="post.title" :creatorId="post.creatorId"/>
+    </template>
   </CenterContent>
 </template>
 

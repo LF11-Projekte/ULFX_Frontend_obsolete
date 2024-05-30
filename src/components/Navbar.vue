@@ -2,8 +2,9 @@
 import router from '@/router';
 import ProfileCircle from '@/components/ProfileCircle.vue';
 
-import {ref} from "vue";
+import {useUserStore} from "@/stores/user.js";
 
+const userStore = useUserStore();
 
 </script>
 
@@ -21,7 +22,8 @@ import {ref} from "vue";
     </div>
 
     <div class="navbar-right">
-      <ProfileCircle class="profile-picture" user="me" style="margin: 5px;"/>
+      <button v-if="userStore.userId === 0">Anmelden</button>
+      <ProfileCircle v-else class="profile-picture" user="me"/>
     </div>
   </div>
 </template>
@@ -55,8 +57,8 @@ img {
 
 .navbar-right {
   display: flex;
-  margin: auto 0 auto auto;
   max-height: 100%;
+  margin: auto 15px auto auto;
 }
 
 .searchbar {
@@ -79,9 +81,5 @@ img {
   outline: none;
   height: auto;
   border: 0;
-}
-
-.menu-icon:hover {
-  background-color: var(--color-submenu-hover);
 }
 </style>

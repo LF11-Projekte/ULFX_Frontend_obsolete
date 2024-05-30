@@ -3,10 +3,36 @@ import CenterContent from '@/components/CenterContent.vue';
 import Post from '@/components/Post.vue';
 import ProfileCircle from '@/components/ProfileCircle.vue';
 
-let username = "Username";
-let description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam quis, eaque unde qui odio harum? Autem eum minima voluptatum earum beatae quos deserunt incidunt non laborum exercitationem sapiente culpa provident impedit neque doloremque aliquid quasi at eius, enim laboriosam, harum quidem itaque accusamus? Iusto, accusantium vel. Molestias officia non velit.";
+import { useUserStore} from "@/stores/user.js";
+import {ref} from "vue";
+
+let x = document.baseURI.split("/");
+let rs = x[x.length - 1];
+
+let userId = useUserStore().userId;
+let username = useUserStore().userName;
+let description = useUserStore().description;
+
+let isNotMe = rs !== "me";
+if (isNotMe) {
+  userId = rs;
+  fetch("http://localhost:9999/api/User/" + rs).then((res) => res.json()).then((data) => {
+    username = data.username;
+    description = data.description;
+  })
+}
+
 let isFollowing = false;
 let followers = 0;
+
+let posts = ref([]);
+
+fetch("http://localhost:9999/api/Post").then((response) => response.json()).then((data) => {
+  for (let post of data) {
+    if (userId === post.creatorId)
+      posts.value.push({title: post.title, text: post.text});
+  }
+})
 
 // for resizing posts comments
 function resize() {
@@ -32,11 +58,14 @@ window.addEventListener("resize", resize);
           <div>
             <ProfileCircle size="150px"/>
             <div style="display: flex; justify-content: center; margin-top: 10px;">
-              <button class="followButton">
+              <button v-if="isNotMe" class="followButton">
                 <span v-if="isFollowing">Entfolgen</span>
                 <span v-else>Folgen</span>
                 <span>{{ followers }}</span>
               </button>
+
+              <span v-if="!isNotMe">{{ followers }}</span>
+
             </div>
           </div>
           <div />
@@ -46,16 +75,9 @@ window.addEventListener("resize", resize);
           <input class="username" type="text" v-bind:value="username"/>
           <input class="description" type="text" v-bind:value="description"/>
         </div>
-
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
-        <Post/>
+        <template v-for="post in posts">
+          <Post :text="post.text" :title="post.title" :creatorId="userId" />
+        </template>
     </CenterContent>
 </template>
 

@@ -1,5 +1,8 @@
 <script setup>
 import Comment from '@/components/Comment.vue';
+import ProfileCircle from "@/components/ProfileCircle.vue";
+
+const props = defineProps(['text', 'title', 'creatorId']);
 
 import { ref } from 'vue';
 
@@ -11,10 +14,14 @@ const image = ref("src/assets/ULFX_Logo.png");
   <div class="post">
 
     <div class="left">
-      <div class="title">Titel</div>
+      <div class="title" style="display: flex; justify-content: space-between">
+        <ProfileCircle :user="props.creatorId" />
+        {{ props.title }}
+        <div/>
+      </div>
       <img :src="image" class="image" alt="img">
       <div class="text">
-        <template v-for="i in 3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia laborum esse aperiam hic tempore, quod iste, nulla excepturi officia illum voluptatum incidunt recusandae corrupti perferendis temporibus voluptatem? Harum pariatur quisquam suscipit cum iste alias fugit, eveniet aliquam odit quia unde nihil laboriosam praesentium iure repellendus, in libero nobis? Ullam, blanditiis!</template>
+        {{ props.text }}
       </div>
     </div>
 
@@ -73,6 +80,7 @@ const image = ref("src/assets/ULFX_Logo.png");
 
 .comments {
   overflow: auto;
+  min-height: 400px;
   max-height: 0;
 }
 
