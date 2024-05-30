@@ -25,5 +25,6 @@ Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi, adipisci. Modi 
 
 .text {
     margin: 5px;
+    font-size: small;
 }
 </style>

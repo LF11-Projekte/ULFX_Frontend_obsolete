@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router';
 import ProfileCircle from '@/components/ProfileCircle.vue';
 
 import {ref} from "vue";
@@ -8,7 +9,7 @@ const showSubmenu = ref(false);
 
 <template>
   <div class="navbar">
-    <div class="navbar-left">
+    <div class="navbar-left" v-on:click="router.push('/')">
       <img src="@/assets/ULFX_Logo.png">
     </div>
 
@@ -20,11 +21,11 @@ const showSubmenu = ref(false);
     </div>
 
     <div class="navbar-right">
-      <ProfileCircle class="profile-picture"/>
+      <ProfileCircle class="profile-picture" user="me" />
       <div class="menu">
         <img class="menu-icon" src="@/assets/menu.svg" @click="showSubmenu = !showSubmenu">
         <div v-show="showSubmenu" id="submenu">
-          <p class="submenu-entry">test</p>
+          <a class="submenu-entry">Nothing</a>
         </div>
       </div>
     </div>
@@ -87,7 +88,7 @@ img {
 }
 
 .menu-icon:hover {
-  background-color: #D9D9D9;
+  background-color: var(--color-submenu-hover);
 }
 
 #submenu {
@@ -97,6 +98,10 @@ img {
   justify-content: center;
   right: 0;
   top: var(--navbar-height);
+}
+
+.submenu-entry {
+  text-decoration: none;
 }
 
 .submenu-entry {

@@ -1,26 +1,29 @@
 <script setup>
+import router from '@/router';
+
+const props = defineProps(['user', 'size', 'picture']);
+
+let size = "35px";
+let picture = "/src/assets/profile.svg";
+
+if (props.size)
+    size = props.size;
+
 </script>
 
 <template>
-    <div class="profile-picture"></div>
+    <div class="profile-picture" v-on:click="router.push('/profile/' + props.user)" v-bind:style="{minWidth: size, maxWidth: size, minHeight: size, maxHeight: size, backgroundImage: `url(${picture})`}"/>
 </template>
 
 <style scoped>
 
 .profile-picture {
-    max-width: var(--size-profile-picture);
-    width: var(--size-profile-picture);
-    min-width: var(--size-profile-picture);
-    max-height: var(--size-profile-picture);
-    height: var(--size-profile-picture);
-    min-height: var(--size-profile-picture);
     border-radius: 100%;
     border: 2px solid white;
-    background-image: url("@/assets/profile.svg");
     background-color: var(--color-profile-circle-background);
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 60%;
     background-repeat: no-repeat;
 }
 

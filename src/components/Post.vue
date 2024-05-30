@@ -1,36 +1,26 @@
 <script setup>
 import Comment from '@/components/Comment.vue';
+
+import { ref } from 'vue';
+
+const image = ref("src/assets/ULFX_Logo.png");
+
 </script>
 
 <template>
   <div class="post">
-    <div class="title">Titel</div>
-    <div class="post-content">
-      <div class="image">
-        <img src="@/assets/ULFX_Logo.png "/>
-      </div>
+
+    <div class="left">
+      <div class="title">Titel</div>
+      <img :src="image" class="image" alt="img">
       <div class="text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia laborum esse aperiam hic tempore, quod iste, nulla excepturi officia illum voluptatum incidunt recusandae corrupti perferendis temporibus voluptatem? Harum pariatur quisquam suscipit cum iste alias fugit, eveniet aliquam odit quia unde nihil laboriosam praesentium iure repellendus, in libero nobis? Ullam, blanditiis!
+        <template v-for="i in 3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia laborum esse aperiam hic tempore, quod iste, nulla excepturi officia illum voluptatum incidunt recusandae corrupti perferendis temporibus voluptatem? Harum pariatur quisquam suscipit cum iste alias fugit, eveniet aliquam odit quia unde nihil laboriosam praesentium iure repellendus, in libero nobis? Ullam, blanditiis!</template>
       </div>
     </div>
-    <div class="post-actions">
+
+    <div class="right" >
       <div class="comments">
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
+        <Comment v-for="i in 32" />
       </div>
       <div class="actionbar">
         <input type="text"/>
@@ -45,46 +35,45 @@ import Comment from '@/components/Comment.vue';
 <style scoped>
 
 .post {
-  display: flex;
-  flex-direction: row;
-  box-shadow: var(--box-shadow);
   border-radius: 5px;
-  padding: var(--padding-post);
+  box-shadow: var(--box-shadow);
   border: var(--border);
-
-  max-height: var(--max-post-height);
+  padding: 10px;
 }
 
-.post-content {
+.post, .left, .right {
   display: flex;
+}
+
+.left, .right {
   flex-direction: column;
-  max-width: 50%;
-  width: 50%;
-  min-width: 50%;
-  height: 100%;
+  flex-basis: 50%;
+}
+
+.right {
+  justify-content: space-between;
+}
+
+.title {
+  font-size: larger;
+  text-align: center;
+  margin: 25px;
+  max-height: fit-content;
 }
 
 .image {
-  margin: 5px;
-}
-
-.image img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .text {
-  padding: 5px;
-}
-
-.post-actions {
-  display: flex;
-  flex-direction: column;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
 }
 
 .comments {
-  max-height: 100%;
   overflow: auto;
+  max-height: 0;
 }
 
 .actionbar {
@@ -94,26 +83,21 @@ import Comment from '@/components/Comment.vue';
 }
 
 .actionbar input {
-  background-color: var(--color-searchbar);
-  width: 100%;
-  margin: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  background-color: var(--color-background);
+  flex-grow: 1;
+  padding: 0 5px;
   outline: none;
-  border: var(--border);
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  border: var(--border);
+  margin: 5px;
 }
 
 .actionbar button {
   background-position-x: center;
   background-position-y: center;
   background-size: contain;
-  max-width: var(--size-actionbuttons);
-  min-width: var(--size-actionbuttons);
   width: var(--size-actionbuttons);
-  max-height: var(--size-actionbuttons);
-  min-height: var(--size-actionbuttons);
   height: var(--size-actionbuttons);
   border-radius: 25%;
   margin: 5px;

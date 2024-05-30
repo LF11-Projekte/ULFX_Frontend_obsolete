@@ -1,36 +1,34 @@
 <script setup>
 import Post from "@/components/Post.vue";
 import CenterContent from "@/components/CenterContent.vue";
+
+// for resizing posts comments
+function resize() {
+  for (let element of document.getElementsByClassName("post")) {
+    let comments = element.getElementsByClassName("comments")[0];
+    let left = element.getElementsByClassName("left")[0];
+    let actionbar = element.getElementsByClassName("actionbar")[0];
+
+    comments.style.maxHeight = 0 + "px";
+    let maxHeight = left.offsetHeight - actionbar.offsetHeight;
+    comments.style.maxHeight = maxHeight + "px";
+  }
+}
+
+setTimeout(resize, 100);
+window.addEventListener("resize", resize);
 </script>
 
 <template>
   <CenterContent>
-    <Post />
+    <Post class="post-space" v-for="i in 32"/>
   </CenterContent>
 </template>
 
 <style scoped>
-.content {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  padding-top: var(--navbar-height);
-}
 
-.middle {
-  margin-top: var(--margin-top-middle);
-  margin-bottom: var(--margin-bottom-middle);
-  padding: var(--paddig-middle);
-  background-color: var(--color-background);
-  flex-grow: 1;
-}
-
-.space-left {
-  width: var(--space-width);
-}
-
-.space-right {
-  width: var(--space-width);
+.post-space:last-child {
+  margin-bottom: 0;
 }
 
 .post-space {

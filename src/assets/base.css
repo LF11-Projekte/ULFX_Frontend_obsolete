@@ -1,10 +1,12 @@
 /* color palette from <https://github.com/vuejs/theme> */
 /* semantic color variables for this project */
 :root {
+  /* Hauptanssicht */
   --space-width: 100px;
-  --margin-top-middle: 100px;
-  --margin-bottom-middle: 20px;
-  --paddig-middle: 20px;
+  --margin-top: 100px;
+  --margin-bottom: 20px;
+  --paddig: 20px;
+  --post-space-between: 10px;
 
   --navbar-height: 50px;
   --color-navbar: #3C3C3C;
@@ -16,18 +18,14 @@
 
   --color-profile-circle-background: #a5a5a5;
   --color-profile-circle-background-hover: #DBDBDB;
-  --size-profile-picture: 35px;
 
   --color-submenu: var(--color-navbar);
-  --color-submenu-hover: #828282;
+  --color-submenu-hover: #4c4c4c;
   --min-width-submenu-entry: 100px;
   --height-submenu-entry: 30px;
 
-  --padding-post: 5px;
-  --post-space-between: 5px;
-
-  --color-button: rgb(200, 200, 200);
-  --color-button-hover: rgb(180, 180, 180);
+  --color-button: var(--color-background);
+  --color-button-hover: rgb(220, 220, 220);
   --size-actionbuttons: 30px;
 
   --max-width-comment-profile: 100px;
@@ -46,7 +44,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background-image: linear-gradient(45deg, #4D68D9 0%, #AF6AB3 90%);
+  background-image: linear-gradient(45deg, #4D68D9 20%, #D96570 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: var(--color-text);
